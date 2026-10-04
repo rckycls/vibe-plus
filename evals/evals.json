@@ -1,0 +1,23 @@
+{
+  "skill_name": "vibe-plus",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "ok so im on claude pro (using claude code) and i keep hitting the limit like halfway through stuff and then everything is broken lol. i want to build a recipe saver web app where you paste a url and it pulls out the ingredients + steps and saves them, with login so my gf and i can share a collection. i can usually do 2 sessions on weekday evenings and like 3 on saturday. never really coded before tbh. can you plan this out for me? empty folder rn",
+      "expected_output": "vibe-plus/PLAN.md and vibe-plus/HANDOFF.md written; MVP scoped; tasks sized S/M/L with none bigger than L; windows packed to a beginner-adjusted capacity with riskiest-first ordering and a reserved wrap-up; human tasks (accounts, API keys, testing) placed in cooldowns; kickoff prompts on tasks; short reply with overview and first step.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I use ChatGPT Plus in the browser only (no Codex, no terminal). I want to make a Discord bot in Python for my D&D group that rolls dice, tracks initiative, and stores character HP in a little sqlite db. Help me plan this so I don't burn through my limit every night — I get maybe one solid window per day after work.",
+      "expected_output": "Chat-only path: plan delivered as a single markdown block to save in a ChatGPT Project (no file writes); tasks sized and packed for ~1 window/day; handoff block for pasting into new chats; first kickoff prompt; tips adapted to copy-paste coding.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "just hit my limit again. resets at 9:40pm. got T04 and T05 done but T06 (the stripe webhook) is half done, signature verification keeps failing. log it and tell me what to do next",
+      "expected_output": "Check-in mode: reads existing vibe-plus/PLAN.md and HANDOFF.md, logs the window (planned vs done, limit hit), recalibrates capacity, resizes/splits the Stripe task, rewrites HANDOFF.md with the half-done state and the failed approach as a gotcha, suggests cooldown human tasks before 9:40pm.",
+      "files": ["evals/files/eval3-project/vibe-plus/PLAN.md", "evals/files/eval3-project/vibe-plus/HANDOFF.md"]
+    }
+  ]
+}
