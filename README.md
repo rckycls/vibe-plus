@@ -14,7 +14,15 @@ It writes two files to your project: `vibe-plus/PLAN.md` and `vibe-plus/HANDOFF.
 
 ## Install
 
-The skill lives in [`skills/vibe-plus/`](skills/vibe-plus/).
+The quickest way is the [`skills`](https://github.com/vercel-labs/skills) CLI. It detects which agents you use (Claude Code, Codex, Cursor, Gemini CLI and others) and installs into each:
+
+```bash
+npx skills add rckycls/vibe-plus            # this project
+npx skills add rckycls/vibe-plus -g         # every project (user-level)
+npx skills add rckycls/vibe-plus -a claude-code -a codex   # pick agents
+```
+
+Update later with `npx skills update`. To install by hand, copy the skill from [`skills/vibe-plus/`](skills/vibe-plus/):
 
 | Tool | How |
 |------|-----|
