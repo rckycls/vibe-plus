@@ -29,7 +29,10 @@
         "Schedule assumes about one window per day",
         "Provides a handoff block/template to paste at the start of each new chat",
         "Tasks are sized and the reply includes a kickoff prompt for the first task",
-        "Advises a fresh conversation per task and explains why it saves budget"
+        "Advises a fresh conversation per task and explains why it saves budget",
+        "Whole reply is under ~150 lines",
+        "Full task cards / kickoff prompts are given only for the first window; later tasks are one-liners",
+        "Tells the user the next window's prompts come at the next check-in"
       ]
     },
     {

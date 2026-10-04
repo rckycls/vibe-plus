@@ -81,7 +81,14 @@ Put 🧑 tasks in the **cooldown** between windows, and make sure no 🤖 task i
 
 Then **offer** (don't just do it) to add one line to the project's agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, or `GEMINI.md`): `At the start of each session, read vibe-plus/HANDOFF.md first and do not explore the repo beyond what the current task lists.` Agents load that file automatically, so every new session starts cheaply.
 
-**Chat-only** (claude.ai or chatgpt.com in a browser, no file access): put the plan in a single markdown block they can save, and suggest storing it in a Project (Claude Projects, ChatGPT Projects) so it persists. End with the first window's kickoff prompt.
+**Chat-only** (claude.ai or chatgpt.com in a browser, no file access): use the **compact plan** in `assets/chat-plan-template.md`. Here every line you write is generated inside the user's own chat, so it comes out of the same limit the plan is meant to protect. A 300-line plan can burn a noticeable part of the first window before any code exists. The compact plan works like this:
+
+- **Plan in one block, about 60–80 lines.** The decisions, MVP and Later lists, assumptions, the window table, and **one line per task**: `ID · size · title · done-when`. No goal, files or context fields for later tasks. The one-liner plus the locked decisions is enough until that window arrives.
+- **Full cards only for W1:** the task cards with their kickoff prompts. Later windows get their cards just in time, at each check-in or resume. That costs the same in total, but it's spread across windows, and cards written later reflect what was actually learned, so they don't go stale after a recalibration.
+- **A short starter handoff block** (about 10 lines) to paste at the start of the next chat.
+- **Shared rules said once, not in every prompt.** Put repeated instructions ("return full files", "two failed fixes, stop") in the Project instructions, and keep the kickoff prompts to what's specific to the task.
+
+Aim for the **whole reply to stay under about 150 lines**. Suggest storing the plan and the latest handoff in a Project (Claude Projects, ChatGPT Projects) so they persist, and tell the user that each check-in will hand over the next window's prompts.
 
 ### 6. Close the planning turn
 
@@ -97,7 +104,7 @@ Planning uses budget too, so keep the reply short. Include:
 1. Read `vibe-plus/HANDOFF.md` (or the pasted block). Read `PLAN.md` only for the current window's task cards. Don't re-explore the repo: the handoff exists so the session doesn't have to.
 2. Say in two or three lines where things stand and what this window holds.
 3. If `HANDOFF.md` lists gotchas or a broken state, deal with that first.
-4. Start the first task, or hand over its kickoff prompt if the user prefers one conversation per task.
+4. Start the first task, or hand over its kickoff prompt if the user prefers one conversation per task. **Chat-only:** if this window's tasks are still one-liners, expand them into full cards with kickoff prompts now, for this window only.
 
 ## Mode: Check-in
 
@@ -108,6 +115,7 @@ Run this at the end of a window, or when the limit hits:
 3. **Recalibrate capacity** with the rule in `references/sizing.md`. Re-pack the remaining windows if capacity changed or a task turned out bigger than planned (split it now).
 4. Rewrite `HANDOFF.md`: the next task, the current state, gotchas, and any uncommitted or broken bits.
 5. Remind them which 🧑 tasks fit this cooldown and when the next window starts, if they told you their reset time.
+6. **Chat-only:** give back the updated handoff block plus the **next window's** full cards and kickoff prompts, and nothing more. Re-print the whole plan only if it was re-packed, and even then only the changed lines and the window table.
 
 If the limit is close (the user says so, or the tool warns), skip everything else and do steps 4 and 5 first. A good handoff is worth more than a finished task.
 
@@ -152,4 +160,5 @@ Include the relevant ones in the plan's tips section, and follow them yourself w
 
 - `references/sizing.md`: point sizes with examples, default capacity per tool, and the recalibration rule. Read it before packing windows or doing a check-in.
 - `references/platforms.md`: notes per tool (how to see remaining usage, model choice, file access, project instructions file). Read it when intake tells you which tool they use.
-- `assets/plan-template.md`, `assets/handoff-template.md`: copy and fill these in.
+- `assets/plan-template.md`, `assets/handoff-template.md`: copy and fill these in (agents with file access).
+- `assets/chat-plan-template.md`: the compact plan for chat-only users.
