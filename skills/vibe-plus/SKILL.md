@@ -49,7 +49,7 @@ Write down the choices that would otherwise get reopened in every session: the s
 
 ### 3. Break the work down
 
-Milestones first, each a demo-able step such as "can sign up" or "can post an item". Then split each milestone into tasks. Every task card needs:
+Milestones first, each a demo-able step such as "can sign up" or "can post an item". Then split each milestone into tasks. A full task card has:
 
 - **Size** (S/M/L) and **🤖/🧑**.
 - **Goal**: one sentence.
@@ -60,6 +60,13 @@ Milestones first, each a demo-able step such as "can sign up" or "can post an it
 - Optionally **Model**: `small-ok` when a cheaper or faster model can handle it (boilerplate, tests, docs, copy), `big` for architecture or hard debugging. Use this only if the user's tool lets them pick a model.
 
 For anything larger than L, split it. A task that dies halfway at the limit is the most expensive kind: you pay for it twice, and the repo is broken in between. `references/sizing.md` has the sizing guide and examples.
+
+**Just-in-time detail.** Write full cards only for the **next window or two**. Every other task gets a **one-liner**: `ID · size · 🤖/🧑 · title · done when <check>`. There are two reasons:
+
+- The plan is written using the user's own allowance. A 350-line plan file can cost a real share of the first window before any code exists.
+- Cards for windows far ahead go stale. Recalibration re-packs them, earlier tasks change file names, and gotchas show up. A card written just before its window uses what was actually learned.
+
+Later windows still need to be planned properly. The one-liner keeps the size, the order and the done-check, so packing and recalibration still work, and the locked decisions keep later tasks on track. Expand a window's one-liners into full cards at the **Resume** or **Check-in** right before that window (see those modes).
 
 ### 4. Pack the windows
 
@@ -76,7 +83,7 @@ Put 🧑 tasks in the **cooldown** between windows, and make sure no 🤖 task i
 
 **Agent with file access** (Claude Code, Codex CLI, Cursor, ...): create
 
-- `vibe-plus/PLAN.md` from `assets/plan-template.md`
+- `vibe-plus/PLAN.md` from `assets/plan-template.md`, with full cards for **W1 and W2** and one-liners after that. Aim for under about 200 lines. Two windows of cards means a user doing back-to-back windows (a Saturday, say) can start W2 without a planning step.
 - `vibe-plus/HANDOFF.md` from `assets/handoff-template.md`
 
 Then **offer** (don't just do it) to add one line to the project's agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, or `GEMINI.md`): `At the start of each session, read vibe-plus/HANDOFF.md first and do not explore the repo beyond what the current task lists.` Agents load that file automatically, so every new session starts cheaply.
@@ -104,7 +111,8 @@ Planning uses budget too, so keep the reply short. Include:
 1. Read `vibe-plus/HANDOFF.md` (or the pasted block). Read `PLAN.md` only for the current window's task cards. Don't re-explore the repo: the handoff exists so the session doesn't have to.
 2. Say in two or three lines where things stand and what this window holds.
 3. If `HANDOFF.md` lists gotchas or a broken state, deal with that first.
-4. Start the first task, or hand over its kickoff prompt if the user prefers one conversation per task. **Chat-only:** if this window's tasks are still one-liners, expand them into full cards with kickoff prompts now, for this window only.
+4. If this window's tasks are still one-liners, expand them into full cards with kickoff prompts now, for **this window only**. With file access, write them into `PLAN.md`; in chat-only, put them in the reply. Use what the handoff says (real file names, gotchas), which is why this waits until now.
+5. Start the first task, or hand over its kickoff prompt if the user prefers one conversation per task.
 
 ## Mode: Check-in
 
@@ -115,7 +123,8 @@ Run this at the end of a window, or when the limit hits:
 3. **Recalibrate capacity** with the rule in `references/sizing.md`. Re-pack the remaining windows if capacity changed or a task turned out bigger than planned (split it now).
 4. Rewrite `HANDOFF.md`: the next task, the current state, gotchas, and any uncommitted or broken bits.
 5. Remind them which 🧑 tasks fit this cooldown and when the next window starts, if they told you their reset time.
-6. **Chat-only:** give back the updated handoff block plus the **next window's** full cards and kickoff prompts, and nothing more. Re-print the whole plan only if it was re-packed, and even then only the changed lines and the window table.
+6. **Keep the lookahead.** With file access, make sure the next window has full cards in `PLAN.md`, and expand it now if it doesn't. Leave windows beyond that as one-liners.
+7. **Chat-only:** give back the updated handoff block plus the **next window's** full cards and kickoff prompts, and nothing more. Re-print the whole plan only if it was re-packed, and even then only the changed lines and the window table.
 
 If the limit is close (the user says so, or the tool warns), skip everything else and do steps 4 and 5 first. A good handoff is worth more than a finished task.
 

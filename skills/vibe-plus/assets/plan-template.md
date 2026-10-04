@@ -30,6 +30,8 @@
 
 ## Windows and tasks
 
+<!-- Full cards for W1 and W2 only. Later windows are one-liners, expanded at the check-in or resume before each window. -->
+
 ### W1: <milestone or theme>  (<pts> / <capacity>)
 
 - [ ] **T01 · <title>** `L` 🤖 `big`
@@ -51,6 +53,15 @@
 - [ ] **H01 · <title>**: <what to do, where, roughly how long; what to paste back next window>
 
 ### W2: ...
+*(full cards, same shape as W1)*
+
+### W3: <theme>  (<pts> / <capacity>): one-liners, expanded at the check-in before W3
+- [ ] T07 · M · 🤖 · <title> · done when <check>
+- [ ] T08 · S · 🤖 · <title> · done when <check>
+- [ ] Wrap-up *(reserved)*
+- Cooldown 🧑: H03 · <title>
+
+### W4 ...
 
 ## Tips for this project
 

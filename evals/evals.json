@@ -12,10 +12,11 @@
         "No window's planned points exceed the stated per-window capacity",
         "Every window ends with a reserved wrap-up/handoff step",
         "Non-AI human tasks (accounts, API keys, manual testing) are scheduled into cooldowns between windows",
-        "Each AI task has a verifiable 'done when' check",
-        "Each AI task has a ready-to-paste kickoff prompt",
+        "Every task (full cards and one-liners) has a verifiable 'done when' check",
+        "Full cards with kickoff prompts for W1 and W2 only; later windows are one-liners",
         "Plan accounts for the user being a beginner (lower capacity or sized-up tasks, explicitly stated)",
-        "Final reply tells the user what to do right now (first kickoff / first step)"
+        "Final reply tells the user what to do right now (first kickoff / first step)",
+        "PLAN.md is under ~200 lines"
       ]
     },
     {
@@ -51,7 +52,8 @@
         "Records the failing signature-verification attempt as a gotcha and states continue-vs-restart",
         "Recalibrates (or explicitly re-confirms) capacity with a reason",
         "Reply lists human tasks to do before the 9:40pm reset",
-        "Gives a concrete likely cause for Stripe signature failures (raw body / wrong webhook secret)"
+        "Gives a concrete likely cause for Stripe signature failures (raw body / wrong webhook secret)",
+        "The next window (W3) has full cards with kickoff prompts in PLAN.md"
       ]
     }
   ]
