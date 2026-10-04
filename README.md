@@ -43,4 +43,4 @@ After the first plan, let vibe-plus add its one line to your `CLAUDE.md` or `AGE
 
 ## Releasing
 
-Push a version tag (`git tag v0.2.0 && git push origin v0.2.0`). The [release workflow](.github/workflows/release.yml) packages `skills/vibe-plus` into `vibe-plus.skill` and attaches it to a GitHub Release. `npx skills` users get changes from `master` with `npx skills update`, without needing a release.
+In GitHub, open **Actions → Release skill → Run workflow** and enter a version tag such as `v0.2.0`. You can also publish a release in the GitHub UI or push a `v*` tag. The [release workflow](.github/workflows/release.yml) packages `skills/vibe-plus` into `vibe-plus.skill` and attaches it to the release. `npx skills` users get changes from `master` with `npx skills update`, without needing a release.

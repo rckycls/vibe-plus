@@ -1,7 +1,17 @@
 name: Release skill
 
-# Push a tag like v0.1.0 to publish vibe-plus.skill as a GitHub Release asset.
+# Publishes vibe-plus.skill as a GitHub Release asset. Three ways to run it:
+#  - Actions tab → "Release skill" → Run workflow, enter a tag like v0.1.0
+#  - Publish a release in the GitHub UI (the asset gets attached to it)
+#  - Push a tag like v0.1.0
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Version tag to release (e.g. v0.1.0)
+        required: true
+  release:
+    types: [published]
   push:
     tags: ['v*']
 
@@ -24,7 +34,13 @@ jobs:
       - name: Package
         run: cd skills && zip -r ../vibe-plus.skill vibe-plus -x '*.DS_Store' '*/__pycache__/*'
 
-      - name: Create release
+      - name: Publish
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" vibe-plus.skill --title "vibe-plus $GITHUB_REF_NAME" --generate-notes
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" vibe-plus.skill --clobber
+          else
+            gh release create "$TAG" vibe-plus.skill --target "$GITHUB_SHA" --title "vibe-plus $TAG" --generate-notes
+          fi
