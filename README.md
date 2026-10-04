@@ -25,6 +25,10 @@ The skill lives in [`skills/vibe-plus/`](skills/vibe-plus/).
 
 ## Use
 
-- "I'm on Claude Pro and want to build a habit-tracker app. Plan it with vibe-plus."
-- "Resume my vibe-plus plan."
-- "Hit my limit, log progress and re-plan."
+**Name the skill when you start.** Asking for a plan in general words often gets a generic plan, because the agent thinks it can manage without a skill. In Claude Code, type `/vibe-plus`. Anywhere else, say "use vibe-plus":
+
+- `/vibe-plus I'm on Claude Pro and want to build a habit-tracker app`
+- "Use vibe-plus to resume my plan."
+- "Use vibe-plus: hit my limit, log progress and re-plan."
+
+After the first plan, let vibe-plus add its one line to your `CLAUDE.md` or `AGENTS.md`. From then on, every session reads the handoff and runs check-ins on its own, without you naming the skill.

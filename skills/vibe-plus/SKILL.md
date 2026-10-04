@@ -86,7 +86,7 @@ Put 🧑 tasks in the **cooldown** between windows, and make sure no 🤖 task i
 - `vibe-plus/PLAN.md` from `assets/plan-template.md`, with full cards for **W1 and W2** and one-liners after that. Aim for under about 200 lines. Two windows of cards means a user doing back-to-back windows (a Saturday, say) can start W2 without a planning step.
 - `vibe-plus/HANDOFF.md` from `assets/handoff-template.md`
 
-Then **offer** (don't just do it) to add one line to the project's agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, or `GEMINI.md`): `At the start of each session, read vibe-plus/HANDOFF.md first and do not explore the repo beyond what the current task lists.` Agents load that file automatically, so every new session starts cheaply.
+Then **offer** (don't just do it) to add one line to the project's agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, or `GEMINI.md`): `This project uses the vibe-plus skill. At the start of each session, read vibe-plus/HANDOFF.md first and do not explore the repo beyond what the current task lists. When a usage window ends or the limit is hit, run a vibe-plus check-in.` Agents load that file automatically, so every new session starts cheaply and check-ins happen without the user having to remember the skill's name.
 
 **Chat-only** (claude.ai or chatgpt.com in a browser, no file access): use the **compact plan** in `assets/chat-plan-template.md`. Here every line you write is generated inside the user's own chat, so it comes out of the same limit the plan is meant to protect. A 300-line plan can burn a noticeable part of the first window before any code exists. The compact plan works like this:
 
