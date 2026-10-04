@@ -28,7 +28,7 @@ Update later with `npx skills update`. To install by hand, copy the skill from [
 |------|-----|
 | Claude Code | Copy `skills/vibe-plus` to `~/.claude/skills/vibe-plus` (all projects) or `.claude/skills/vibe-plus` (one project) |
 | Codex CLI | Copy `skills/vibe-plus` to `~/.codex/skills/vibe-plus` |
-| claude.ai | Zip the `vibe-plus` folder and upload it under Settings → Capabilities → Skills |
+| claude.ai | Download [`vibe-plus.skill`](https://github.com/rckycls/vibe-plus/releases/latest/download/vibe-plus.skill) and upload it under Settings → Capabilities → Skills (rename it to `.zip` if the upload asks for one) |
 | Others | Paste `SKILL.md` into your project's custom instructions, or ask your agent to read it |
 
 ## Use
@@ -40,3 +40,7 @@ Update later with `npx skills update`. To install by hand, copy the skill from [
 - "Use vibe-plus: hit my limit, log progress and re-plan."
 
 After the first plan, let vibe-plus add its one line to your `CLAUDE.md` or `AGENTS.md`. From then on, every session reads the handoff and runs check-ins on its own, without you naming the skill.
+
+## Releasing
+
+Push a version tag (`git tag v0.2.0 && git push origin v0.2.0`). The [release workflow](.github/workflows/release.yml) packages `skills/vibe-plus` into `vibe-plus.skill` and attaches it to a GitHub Release. `npx skills` users get changes from `master` with `npx skills update`, without needing a release.

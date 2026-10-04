@@ -1,0 +1,30 @@
+name: Release skill
+
+# Push a tag like v0.1.0 to publish vibe-plus.skill as a GitHub Release asset.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SKILL.md frontmatter
+        run: |
+          f=skills/vibe-plus/SKILL.md
+          head -1 "$f" | grep -qx -- '---'
+          grep -q '^name: vibe-plus$' "$f"
+          grep -q '^description: ' "$f"
+
+      - name: Package
+        run: cd skills && zip -r ../vibe-plus.skill vibe-plus -x '*.DS_Store' '*/__pycache__/*'
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" vibe-plus.skill --title "vibe-plus $GITHUB_REF_NAME" --generate-notes
