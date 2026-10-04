@@ -52,7 +52,7 @@ A typical 8-point window looks like `L + M + S + S` or `M + M + M + S`. Don't bu
 
 ## Recalibration rule (run at every check-in)
 
-Keep a log row per window: `planned`, `done`, `limit_hit` (y/n).
+Keep a log row per window: `planned`, `done`, `limit_hit` (y/n). An unfinished task counts as **half** its points in `done` (see "Unfinished tasks" in SKILL.md).
 
 1. **Limit hit before the plan was done**: that window's real capacity = `done`.
 2. **Plan finished and the limit was never hit**: that window's real capacity = `done + 2` (they had room left, so probe upward).

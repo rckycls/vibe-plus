@@ -5,19 +5,51 @@
       "id": 1,
       "prompt": "ok so im on claude pro (using claude code) and i keep hitting the limit like halfway through stuff and then everything is broken lol. i want to build a recipe saver web app where you paste a url and it pulls out the ingredients + steps and saves them, with login so my gf and i can share a collection. i can usually do 2 sessions on weekday evenings and like 3 on saturday. never really coded before tbh. can you plan this out for me? empty folder rn",
       "expected_output": "vibe-plus/PLAN.md and vibe-plus/HANDOFF.md written; MVP scoped; tasks sized S/M/L with none bigger than L; windows packed to a beginner-adjusted capacity with riskiest-first ordering and a reserved wrap-up; human tasks (accounts, API keys, testing) placed in cooldowns; kickoff prompts on tasks; short reply with overview and first step.",
-      "files": []
+      "files": [],
+      "assertions": [
+        "Writes vibe-plus/PLAN.md and vibe-plus/HANDOFF.md in the project folder",
+        "Every task has a size (S/M/L) and none is larger than L",
+        "No window's planned points exceed the stated per-window capacity",
+        "Every window ends with a reserved wrap-up/handoff step",
+        "Non-AI human tasks (accounts, API keys, manual testing) are scheduled into cooldowns between windows",
+        "Each AI task has a verifiable 'done when' check",
+        "Each AI task has a ready-to-paste kickoff prompt",
+        "Plan accounts for the user being a beginner (lower capacity or sized-up tasks, explicitly stated)",
+        "Final reply tells the user what to do right now (first kickoff / first step)"
+      ]
     },
     {
       "id": 2,
-      "prompt": "I use ChatGPT Plus in the browser only (no Codex, no terminal). I want to make a Discord bot in Python for my D&D group that rolls dice, tracks initiative, and stores character HP in a little sqlite db. Help me plan this so I don't burn through my limit every night — I get maybe one solid window per day after work.",
+      "prompt": "I use ChatGPT Plus in the browser only (no Codex, no terminal). I want to make a Discord bot in Python for my D&D group that rolls dice, tracks initiative, and stores character HP in a little sqlite db. Help me plan this so I don't burn through my limit every night \u2014 I get maybe one solid window per day after work.",
       "expected_output": "Chat-only path: plan delivered as a single markdown block to save in a ChatGPT Project (no file writes); tasks sized and packed for ~1 window/day; handoff block for pasting into new chats; first kickoff prompt; tips adapted to copy-paste coding.",
-      "files": []
+      "files": [],
+      "assertions": [
+        "Does not claim to have written files; plan is delivered as markdown to save",
+        "Suggests keeping the plan in a ChatGPT Project (or equivalent persistent place)",
+        "Schedule assumes about one window per day",
+        "Provides a handoff block/template to paste at the start of each new chat",
+        "Tasks are sized and the reply includes a kickoff prompt for the first task",
+        "Advises a fresh conversation per task and explains why it saves budget"
+      ]
     },
     {
       "id": 3,
       "prompt": "just hit my limit again. resets at 9:40pm. got T04 and T05 done but T06 (the stripe webhook) is half done, signature verification keeps failing. log it and tell me what to do next",
       "expected_output": "Check-in mode: reads existing vibe-plus/PLAN.md and HANDOFF.md, logs the window (planned vs done, limit hit), recalibrates capacity, resizes/splits the Stripe task, rewrites HANDOFF.md with the half-done state and the failed approach as a gotcha, suggests cooldown human tasks before 9:40pm.",
-      "files": ["evals/files/eval3-project/vibe-plus/PLAN.md", "evals/files/eval3-project/vibe-plus/HANDOFF.md"]
+      "files": [
+        "evals/files/eval3-project/vibe-plus/PLAN.md",
+        "evals/files/eval3-project/vibe-plus/HANDOFF.md"
+      ],
+      "assertions": [
+        "Adds a log row for W2 to PLAN.md with planned, done and limit-hit values",
+        "Counts half-done T06 as partial credit (done = 5 pts, or explicitly half of T06)",
+        "Splits T06 into a finished part and a remaining part (e.g. T06a/T06b), with the remainder first in the next window",
+        "HANDOFF.md states where the partial T06 code lives and keeps main green (wip branch, stash or revert)",
+        "Records the failing signature-verification attempt as a gotcha and states continue-vs-restart",
+        "Recalibrates (or explicitly re-confirms) capacity with a reason",
+        "Reply lists human tasks to do before the 9:40pm reset",
+        "Gives a concrete likely cause for Stripe signature failures (raw body / wrong webhook secret)"
+      ]
     }
   ]
 }

@@ -103,13 +103,38 @@ Planning uses budget too, so keep the reply short. Include:
 
 Run this at the end of a window, or when the limit hits:
 
-1. Ask (or infer from git log and checkboxes) which tasks finished and whether the limit hit early, on time, or never.
+1. Ask (or infer from git log and checkboxes) which tasks finished and whether the limit hit early, on time, or never. If a task was left half-done, follow **Unfinished tasks** below as part of this check-in.
 2. Append a line to the **Log** in `PLAN.md`: date, window, points planned, points done, limit hit (y/n), and a note.
 3. **Recalibrate capacity** with the rule in `references/sizing.md`. Re-pack the remaining windows if capacity changed or a task turned out bigger than planned (split it now).
 4. Rewrite `HANDOFF.md`: the next task, the current state, gotchas, and any uncommitted or broken bits.
 5. Remind them which 🧑 tasks fit this cooldown and when the next window starts, if they told you their reset time.
 
 If the limit is close (the user says so, or the tool warns), skip everything else and do steps 4 and 5 first. A good handoff is worth more than a finished task.
+
+## Unfinished tasks
+
+Sometimes the limit hits mid-task anyway. The goal is that the next window starts from a known, working state, and doesn't pay twice for the same mistake.
+
+**1. Save the state, keeping the main branch green.**
+- **The code still builds and runs, and the finished part passes its check**: commit it normally with a message such as `T06 (partial): signature parsing done, order creation not started`.
+- **The code is broken**: commit the work to a `wip/T06` branch, then return the main branch to the last green commit. The next session can still use the partial work without starting on a broken app.
+- **Not a git user, or chat-only**: put the partial code, or a description of it, in the handoff's "Uncommitted or half-done" section. Say exactly which file it belongs in.
+
+**2. Split what's left.** Rename the task: the finished part becomes `T06a` (ticked), and the rest becomes `T06b` with a fresh size and its own done-check. Put `T06b` **first** in the next window. It's now the riskiest task, and the details are freshest.
+
+**3. Decide: continue or restart.** Write the choice into the handoff so the next session doesn't have to work it out:
+- **Continue** when the remaining steps are clear and the partial code is sound.
+- **Restart with a different approach** when the session was stuck in a debug loop. Write the failed approach under **Gotchas** ("tried X, failed because Y; don't retry"), and give `T06b` a kickoff prompt that names the new approach. Retrying the same thing in a new session usually fails the same way.
+
+**4. Count it fairly.** In the log, an unfinished task counts as **half** its points toward `done`. Counting it as zero would make capacity drop too much. Counting it as full would hide the overrun.
+
+**5. Prevent the next one: late-window rule.** Once most of a window is used (the user says so, `/usage` or `/status` shows it, or the tool warns that the limit is near), only start a task if it is **S**, or if it can be cut short and still leave things working. Otherwise, wrap up early. A finished handoff with unused budget is better than a half-done L.
+
+**6. Unfinished twice? Change tack.** If the same task ends a window unfinished a second time, don't just schedule it again. Pick one of these, tell the user why, and update the plan:
+- An **S spike**: a small, throwaway experiment that answers the unknown, such as "does the webhook signature check work in a 20-line script?"
+- The **bigger model** for this task only.
+- **Smaller scope**: a simpler version that meets the MVP.
+- **Park it** under "Later" if the MVP can ship without it.
 
 ## Habits that stretch a window
 

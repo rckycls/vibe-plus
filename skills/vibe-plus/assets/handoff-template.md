@@ -19,4 +19,5 @@
 - <H02 · title>: <what's needed and where to put it, e.g. "add STRIPE_KEY to .env">
 
 ## Uncommitted or half-done
-- <none, or exactly what's mid-change and how to finish or revert it>
+- <none, or for example: "T06b: partial work on branch wip/T06 (main is green at a1b2c3d)">
+- **Plan:** <continue: remaining steps are ... | restart with a new approach: ... (see Gotchas)>
